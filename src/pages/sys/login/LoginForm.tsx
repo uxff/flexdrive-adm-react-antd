@@ -4,24 +4,31 @@ import { useTranslation } from "react-i18next";
 import { AiFillGithub, AiFillGoogleCircle, AiFillWechat } from "react-icons/ai";
 
 import { DEFAULT_USER, TEST_USER } from "@/_mock/assets";
-import type { SignInReq } from "@/api/services/userService";
-import { useSignIn } from "@/store/userStore";
+// import type { SignInReq } from "@/api/services/userService";
+// import { useSignIn } from "@/store/userStore";
 
-import { LoginStateEnum, useLoginStateContext } from "./providers/LoginStateProvider";
+import type { LoginReq } from "@/api/services/admuserService";
+import { useLogin } from "@/store/admuserStore";
+
+import { LoginStateEnum as LoginTabStateEnum, useLoginStateContext as useLoginTabStateContext } from "./providers/LoginStateProvider";
 
 function LoginForm() {
 	const { t } = useTranslation();
 	const [loading, setLoading] = useState(false);
 
-	const { loginState, setLoginState } = useLoginStateContext();
-	const signIn = useSignIn();
+	const { loginState: loginTabState, setLoginState: setLoginTabState } = useLoginTabStateContext();
+	// const signIn = useSignIn();
+	const login = useLogin();
 
-	if (loginState !== LoginStateEnum.LOGIN) return null;
+	if (loginTabState !== LoginTabStateEnum.LOGIN) return null;
 
-	const handleFinish = async ({ username, password }: SignInReq) => {
+	const handleFinish = async ({ username, password }: LoginReq) => {
+		console.log('will login');
 		setLoading(true);
 		try {
-			await signIn({ username, password });
+			// await signIn({ username, password, captcha: '000000' });
+			await login({ username, password, captcha: '000000' });
+			console.log('login success');
 		} finally {
 			setLoading(false);
 		}
@@ -76,7 +83,7 @@ function LoginForm() {
 							<Button
 								type="link"
 								className="!underline"
-								onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)}
+								onClick={() => setLoginTabState(LoginTabStateEnum.RESET_PASSWORD)}
 								size="small"
 							>
 								{t("sys.login.forgetPassword")}
@@ -92,16 +99,16 @@ function LoginForm() {
 
 				<Row align="middle" gutter={8}>
 					<Col span={9} flex="1">
-						<Button className="w-full !text-sm" onClick={() => setLoginState(LoginStateEnum.MOBILE)}>
+						<Button className="w-full !text-sm" onClick={() => setLoginTabState(LoginTabStateEnum.MOBILE)}>
 							{t("sys.login.mobileSignInFormTitle")}
 						</Button>
 					</Col>
 					<Col span={9} flex="1">
-						<Button className="w-full !text-sm" onClick={() => setLoginState(LoginStateEnum.QR_CODE)}>
+						<Button className="w-full !text-sm" onClick={() => setLoginTabState(LoginTabStateEnum.QR_CODE)}>
 							{t("sys.login.qrSignInFormTitle")}
 						</Button>
 					</Col>
-					<Col span={6} flex="1" onClick={() => setLoginState(LoginStateEnum.REGISTER)}>
+					<Col span={6} flex="1" onClick={() => setLoginTabState(LoginTabStateEnum.REGISTER)}>
 						<Button className="w-full !text-sm">{t("sys.login.signUpFormTitle")}</Button>
 					</Col>
 				</Row>

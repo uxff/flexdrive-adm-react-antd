@@ -14,6 +14,8 @@ export enum StorageEnum {
 	UserToken = "userToken",
 	Settings = "settings",
 	I18N = "i18nextLng",
+	AdmMgrInfo = "admMgrInfo",
+	AdmApiToken = "admApiToken",
 }
 
 export enum ThemeMode {

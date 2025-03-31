@@ -10,10 +10,30 @@ export interface UserInfo {
 	email: string;
 	username: string;
 	password?: string;
-	avatar?: string;
+	avatar?: string;	
 	role?: Role;
 	status?: BasicStatus;
 	permissions?: Permission[];
+}
+
+export interface MgrEntity {
+	Id: string;
+	Name: string;
+	Email: string;
+	Phone: string;
+	Pwd: string;
+	Created: string;
+	Updated: string;
+	Status: BasicStatus;
+	RoleId: number;
+	LastLoginAt: string;
+	LastLoginIp: string;
+}
+export interface LoginInfo {
+	Mid: number;
+	RoleId: number;
+	LoginAt: string;
+	MgrEnt: MgrEntity;
 }
 
 export interface Organization {
