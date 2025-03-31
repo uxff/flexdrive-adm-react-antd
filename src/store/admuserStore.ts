@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { t } from "@/locales/i18n";
 
-import apiService, { type LoginReq } from "@/api/services/admuserService";
+import apiService, { type LoginReq, NodeListReq, NodeListRes } from "@/api/services/admuserService";
 
 import { toast } from "sonner";
 import type { MgrEntity } from "#/entity";
@@ -95,5 +95,34 @@ export const useLogin = () => {
 
 	return login;
 };
+
+export const nodeList = async <NodeListRes>(data: NodeListReq) => {
+	try {
+		const nodeListMutation = useMutation({
+			mutationFn: () => {
+				const apiToken :string = useAdmApiToken(); //useMgrInfoStore().admApiToken;
+				return apiService.nodeList(data, apiToken);
+			}
+				
+		});
+
+		return await nodeListMutation.mutateAsync();
+		// const { errcode, errmsg, result, LoginInfo } = res;
+		// const {}
+		// console.log('will get res:', res);
+		// if (errcode != '0') {
+		// 	throw new Error(t("sys.api.apiRequestFailed")+':'+errmsg);
+		// }
+
+		// // toast.success("Login success!");
+		// return res;
+	} catch (err) {
+		toast.error(err.message, {
+			position: "top-center",
+		});
+	}
+};
+
+
 
 export default useMgrInfoStore;

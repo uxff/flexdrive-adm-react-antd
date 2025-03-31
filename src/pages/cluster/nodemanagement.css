@@ -1,0 +1,85 @@
+.node-management-container {
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.node-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.node-name {
+  font-weight: 500;
+}
+
+.node-address {
+  color: #888;
+  font-size: 12px;
+}
+
+.capacity-info {
+  width: 100%;
+}
+
+.capacity-text {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.space-modal p {
+  margin: 0;
+}
+
+/* 如果需要更精确控制 */
+.ant-table-row {
+  height: 160px; /* 固定行高 */
+  line-height: 1.5; /* 文本行高 */
+}
+
+/* 节点详情样式 */
+.node-details {
+  font-size: 13px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.detail-label {
+  font-weight: bold;
+  width: 110px;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.detail-value {
+  flex: 1;
+}
+
+/* 心跳颜色 */
+.heartbeat-green {
+  color: #52c41a;
+}
+
+.heartbeat-orange {
+  color: #faad14;
+}
+
+.heartbeat-red {
+  color: #f5222d;
+}
