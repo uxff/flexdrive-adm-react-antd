@@ -146,12 +146,14 @@ export function usePermissionRoutes() {
 	if (ROUTE_MODE === "module") {
 		return getRoutesFromModules();
 	}
+	
+	return getRoutesFromModules();
+	// const permissions = useUserPermission();
+	// 关闭权限验证
+	// return useMemo(() => {
+	// 	if (!permissions) return [];
 
-	const permissions = useUserPermission();
-	return useMemo(() => {
-		if (!permissions) return [];
-
-		const flattenedPermissions = flattenTrees(permissions);
-		return transformPermissionsToRoutes(permissions, flattenedPermissions);
-	}, [permissions]);
+	// 	const flattenedPermissions = flattenTrees(permissions);
+	// 	return transformPermissionsToRoutes(permissions, flattenedPermissions);
+	// }, [permissions]);
 }

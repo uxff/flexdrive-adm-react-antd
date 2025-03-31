@@ -28,6 +28,7 @@ export interface MgrEntity {
 	RoleId: number;
 	LastLoginAt: string;
 	LastLoginIp: string;
+	permissions?: Permission[];
 }
 export interface LoginInfo {
 	Mid: number;

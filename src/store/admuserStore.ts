@@ -54,8 +54,8 @@ const useMgrInfoStore = create<MgrInfoStore>()(
 // 外面其他模块判断是否登录，使用下面两个函数
 export const useMgrInfo = () => useMgrInfoStore((state) => state.mgrInfo);
 export const useAdmApiToken = () => useMgrInfoStore((state) => state.admApiToken);
-// export const useUserPermission = () =>
-// 	useUserStore((state) => state.userInfo.permissions);
+export const useUserPermission = () =>
+	useMgrInfoStore((state) => state.mgrInfo.permissions);
 export const useMgrActions = () => useMgrInfoStore((state) => state.actions);
 
 export const useLogin = () => {
